@@ -5,19 +5,46 @@ description = "Gmail API integration with stateless OAuth token management"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "fastapi>=0.100.0",
-    "uvicorn[standard]>=0.23.0",
+    # FastAPI and server
+    "fastapi>=0.104.1",
+    "uvicorn[standard]>=0.24.0",
+    "python-multipart>=0.0.6",
+    "pydantic>=2.5.0",
+    
+    # Gmail API (existing)
     "google-api-python-client>=2.100.0",
     "google-auth-oauthlib>=1.1.0",
-    "python-multipart>=0.0.6",
-    "pydantic>=2.0.0",
-    "python-dotenv>=1.0.0"
+    "python-dotenv>=1.0.0",
+    
+    # Stock API web scraping
+    "aiohttp>=3.9.1",
+    "beautifulsoup4>=4.12.2",
+    "lxml>=4.9.3",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.0.0",
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "httpx>=0.25.0",
     "ruff>=0.1.0",
-    "mypy>=1.5.0",
-    "httpx>=0.25.0"
+    "mypy>=1.6.0",
+    "black>=23.9.0",
+    "isort>=5.12.0",
 ]
+
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E501", "B008", "C901"]
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+
+
+[tool.isort]
+profile = "black"
+line_length = 88

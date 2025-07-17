@@ -2,22 +2,23 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 from api.oauth import router as oauth_router
 from api.emails import router as emails_router
+from api.dse import router as dse_router
 
 load_dotenv()
 
 app = FastAPI(
-    title="Gmail API Integration",
-    description="Stateless Gmail OAuth integration with token management",
+    title="Sentiment Analysis APIs",
+    description="APIs for sentiment analysis using Gmail API, OpenAI, Scrapped news and other services.",
     version="0.1.0"
 )
 
 app.include_router(oauth_router)
 app.include_router(emails_router)
-
+app.include_router(dse_router)
 
 @app.get("/")
 async def root():
-    return {"message": "Gmail API Integration Service", "version": "0.1.0"}
+    return {"message": "Sentiment Analysis APIs", "version": "0.1.0"}
 
 
 @app.get("/health")
